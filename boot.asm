@@ -1,18 +1,21 @@
-print_alphabet:
-    mov al, 64
-    mov ah, 0xE
-    mov bl, 96
-    mov cl, al
-print_letters:
-    inc cl
-    mov al, cl
+[org 0x7c00]
+mov ah, 0x0e
+mov al, '>'
+int 0x10
+keyboardInput:
+    cmp bx, 33
+    je end
+    mov ah, 0
+    int 0x16
+    mov ah, 0x0e
+    mov [bx], al
     int 0x10
-    inc bl
-    mov al, bl
-    int 0x10
-    cmp bl, 'z'
-    jne print_letters
+    inc bx
+    jmp keyboardInput
+end:
     jmp $
-jmp print_alphabet
+buffer:
+    times 10 db 0
+    mov bx, buffer
 times 510-($-$$) db 0
-db 0x55, 0xaa 
+db 0x55, 0xaa
