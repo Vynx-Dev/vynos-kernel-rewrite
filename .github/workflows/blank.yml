@@ -20,6 +20,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Compilation
+        run: nasm boot.asm -f bin -o boot.bin
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       - uses: ilammy/setup-nasm@v1.3.1
@@ -30,6 +32,3 @@ jobs:
           prerelease: true
           title: "Rewrite Pre-release"
           files: boot.bin
-      
-      - name: Compilation
-        run: nasm boot.asm -f bin -o boot.bin
