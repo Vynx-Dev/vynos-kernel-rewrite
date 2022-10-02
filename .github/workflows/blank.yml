@@ -25,12 +25,8 @@ jobs:
       - uses: docker/setup-qemu-action@v2.0.0
       - uses: ilammy/setup-nasm@v1.3.1
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: ./run.sh
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          nasm boot.asm -f bin -o boot.bin
+          qemu-system-i386 boot.bin
