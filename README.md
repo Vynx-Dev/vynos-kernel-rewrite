@@ -1,0 +1,1 @@
+buggy unstable kernel rewrite, im not gonna fill this readme with text rn im lazy so just run the file run.sh using the command `./run.sh` you need qemu and nasm ok bye
