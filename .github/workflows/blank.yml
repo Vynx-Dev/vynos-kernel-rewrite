@@ -4,6 +4,8 @@ name: workflow
   # Allows you to run this workflow manually from the Actions tab
 on:
   workflow_dispatch:
+    tags:
+      - "pre-*"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,7 +23,7 @@ jobs:
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "pre-0.0.3"
+          automatic_release_tag: "pre-0.0.4"
           prerelease: true
           title: "Rewrite Pre-release"
           files: boot.bin
