@@ -29,4 +29,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           nasm boot.asm -f bin -o boot.bin
-          qemu-system-i386 boot.bin
+          qemu-i386 -cdrom boot.bin
