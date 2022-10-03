@@ -1,45 +1,70 @@
 ; so you might be thinking, why the hell is there so many commented out code? well if you uncomment the code below then when you type a character the character will only show up if you press enter.
 [org 0x7c00]
+KERNEL_LOCATION equ 0x1000
 mov bp, 0x8000
 mov sp, bp
+disk: db 0
 mov [disk], dl
-CODE_SEG equ code_descriptor - GDT_Start
-DATA_SEG equ data_descriptor - GDT_Start
+xor ax, ax
+mov es, ax
+mov ds, ax
+mov bp, 0x8000
+mov sp, bp
+mov bx, KERNEL_LOCATION
+mov ah, 2
+mov al, 1
+mov ch, 0
+mov dh, 0
+mov cl, 2
+mov dl, [disk]
+int 0x13
+mov ah, 0x0e
+mov al, [0x7e00]
+int 0x10
+CODE_SEG equ GDT_code - GDT_start
+DATA_SEG equ GDT_data - GDT_start
 cli
-lgdt [GDT_Descriptor]
+lgdt [GDT_descriptor]
 mov eax, cr0
 or eax, 1
 mov cr0, eax
 jmp CODE_SEG:start_protected_mode
 jmp $
-GDT_Start:
-    null_descriptor:
-        dd 0
-        dd 0
-    code_descriptor:
+GDT_start:
+    GDT_null:
+        dd 0x0
+        dd 0x0
+    GDT_code:
         dw 0xffff
-        dw 0
-        db 0
+        dw 0x0
+        db 0x0
         db 0b10011010
         db 0b11001111
-        db 0
-    data_descriptor:
+        db 0x0
+    GDT_data:
         dw 0xffff
-        dw 0
-        db 0
+        dw 0x0
+        db 0x0
         db 0b10010010
         db 0b11001111
-        db 0
-GDT_End:
-GDT_Descriptor:
-    dw GDT_End - GDT_Start - 1
-    dd GDT_Start
+        db 0x0
+GDT_end:
+
+GDT_descriptor:
+    dw GDT_end - GDT_start - 1
+    dd GDT_start
+
 [bits 32]
 start_protected_mode:
-    mov al, 'V'
-    mov ah, 0x0f
-    mov [0xb8000], ax
-disk: db 0
+    mov ax, DATA_SEG
+    mov ds, ax
+    mov ss, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
+    mov ebp, 0x90000
+    mov esp, ebp
+    jmp KERNEL_LOCATION
 ;inputLabel:
     ;mov ax, 0
     ;int 0x16
@@ -60,17 +85,3 @@ end:
     jmp $
 times 510-($-$$) db 0
 dw 0xaa55
-; some code that i added, just for later (disk reading code)
-times 512 db 'H'
-mov ah, 2
-mov al, 1
-mov ch, 0
-mov cl, 2
-mov dh, 0
-mov dl, [disk]
-mov es, bx
-mov bx, 0x7e00
-int 0x13
-mov ah, 0x0e
-mov al, [0x7e00]
-int 0x10

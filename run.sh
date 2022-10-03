@@ -1,3 +1,1 @@
-#!/bin/bash
-nasm boot.asm -f bin -o boot.bin
-qemu-system-x86_64 boot.bin
+qemu-system-x86_64 -drive format=raw,file="VynOS.bin",index=0,if=floppy, -m 128M
