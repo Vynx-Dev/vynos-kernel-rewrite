@@ -10,3 +10,5 @@ so apparently when you type something, if you hit enter (before you hit the limi
 ~when you go in releases, it just says update blank.yml so you might think there are no changes, but its github actions being dumb and most likely there is a change in the code with that release~ this should be fixed now
 
 ive lost so many features from the original its not even a rewrite anymore (well its a rewrite, but with less features)
+
+DOESNT WORK ON REAL HARDWARE. THE ONE THING I WANTED AN OS FOR :((((((((((((
