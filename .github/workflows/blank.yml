@@ -25,5 +25,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "pre-0.0.4"
           prerelease: true
-          title: "Rewrite Pre-release"
+          title: "pre-*"
           files: boot.bin
