@@ -4,6 +4,8 @@ buggy unstable kernel rewrite, im not gonna fill this readme with text rn im laz
 * ~we got some keyboard input now, but you can only type 33 characters~ it broke, so now no input .-.
 * we got github actions so now i dont have to keep on spamming nasm and qemu with commands and my laptop can have a lil rest (yes im compiling and building and committing files all on a slow laptop because my main pc is running windows and i need linux for this)
 * C IMPLEMENTATION LES GOOOOOOOOOOOOOOOO
+# Contributing
+Any and all contributions are welcome just open a pr and we will review it!
 # Bugs and other stuff
 ~so apparently when you type something, if you hit enter (before you hit the limit of characters) the characters you type after pressing enter will overwrite the text you already typed before you hit enter (it will also overwrite the > text) this might be a bug, but i like it so im gonna keep it in there (unless someone decides to make a PR fixing that bug)~ input is gone so now we dont have to worry about it
 
