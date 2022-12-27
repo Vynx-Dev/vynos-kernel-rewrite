@@ -1,3 +1,4 @@
+ [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6860/badge)](https://bestpractices.coreinfrastructure.org/projects/6860)
 # The VynOS Kernel rewrite
 buggy unstable kernel rewrite, im not gonna fill this readme with text rn im lazy so just run the file compile.sh using the command `./compile.sh` then run the run.sh file to emulate it you need qemu and nasm someone please make this a better readme
 # Updates
